@@ -5,7 +5,7 @@ function Landing() {
     const navigate = useNavigate();
 
     const goToMainPage = () => {
-        navigate('./App');
+        navigate('./main', {replace: true});
     }
 
     return (

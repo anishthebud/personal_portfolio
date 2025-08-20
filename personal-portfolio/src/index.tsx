@@ -4,13 +4,19 @@ import './index.css';
 import App from './App';
 import Landing from './pages/landing';
 import reportWebVitals from './reportWebVitals';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Landing />
+    <Router>
+      <Landing />
+      <Routes>
+        <Route path="/main" element={<App />}/>
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
