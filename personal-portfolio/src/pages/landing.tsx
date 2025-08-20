@@ -5,13 +5,14 @@ function Landing() {
     const navigate = useNavigate();
 
     const goToMainPage = () => {
-        navigate('./App');
-    }
+        navigate('/app');
+    };
 
     return (
-        <div onClick={goToMainPage} style={{ height: '100vh', backgroundImage: 'url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop)', backgroundSize: 'cover' }}>
-            
-        </div>
+        <div
+            onClick={goToMainPage}
+            style={{ height: '100vh', width: '100%', cursor: 'pointer' }}
+        />
     );
 }
 
