@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <Landing />
       <Routes>
+        <Route path="/" element={<Landing />}/>
         <Route path="/main" element={<App />}/>
       </Routes>
     </Router>
