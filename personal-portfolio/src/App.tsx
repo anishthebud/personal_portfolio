@@ -4,7 +4,7 @@ import HomeCard from './components/HomeCard';
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div id="outerContainer" style={{ minHeight: '100vh', backgroundImage: 'url(/personalPortfolioBackground.png)', backgroundSize: 'cover', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div>
         <HomeCard
           name="About Me"
