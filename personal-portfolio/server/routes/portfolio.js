@@ -2,40 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../db/database');
 
-// GET all portfolio items
-router.get('/', async (req, res) => {
-    try {
-        const { data, error } = await supabase
-            .from('portfolio_items')
-            .select('*')
-            .order('created_at', { ascending: false });
-        
-        if (error) throw error;
-        
-        res.json({
-            status: 'SUCCESS',
-            data: data || [],
-            count: data ? data.length : 0
-        });
-    } catch (error) {
-        console.error('Error fetching portfolio items:', error);
-        res.status(500).json({
-            status: 'ERROR',
-            message: 'Failed to fetch portfolio items',
-            error: error.message
-        });
-    }
-});
-
 // GET portfolio item by ID
-router.get('/:id', async (req, res) => {
+router.get('/:type', async (req, res) => {
     try {
-        const { id } = req.params;
+        const { type } = req.params;
         const { data, error } = await supabase
-            .from('portfolio_items')
-            .select('*')
-            .eq('id', id)
-            .single();
+            .from(type)
+            .select('*');
         
         if (error) {
             if (error.code === 'PGRST116') {
@@ -67,7 +40,7 @@ router.post('/', async (req, res) => {
         const { title, description, category, image_url, link_url, technologies } = req.body;
         
         const { data, error } = await supabase
-            .from('portfolio_items')
+            .from('education')
             .insert([{
                 title,
                 description,
@@ -103,7 +76,7 @@ router.put('/:id', async (req, res) => {
         const { title, description, category, image_url, link_url, technologies } = req.body;
         
         const { data, error } = await supabase
-            .from('portfolio_items')
+            .from('education')
             .update({
                 title,
                 description,
@@ -147,7 +120,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { data, error } = await supabase
-            .from('portfolio_items')
+            .from('education')
             .delete()
             .eq('id', id)
             .select()
@@ -183,7 +156,7 @@ router.get('/category/:category', async (req, res) => {
     try {
         const { category } = req.params;
         const { data, error } = await supabase
-            .from('portfolio_items')
+            .from('education')
             .select('*')
             .eq('category', category)
             .order('created_at', { ascending: false });

@@ -1,9 +1,10 @@
 import React from 'react';
+import MassEffectPanel from '../../components/MassEffectPanel';
 
 function AboutMe() {
   return (
-    <div>
-
+    <div className="container" style={{backgroundImage: 'url(/backgroundImages/cyberpunk-hacker.gif)', backgroundSize: 'cover', backgroundBlendMode: 'lighten'}}>
+      <MassEffectPanel type='about_me' color='hsla(0, 100%, 33%, 1.00)'/>
     </div>
   );
 }

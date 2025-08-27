@@ -1,0 +1,64 @@
+:root {
+    --primary-color: #5c106c;
+}
+
+body {
+    font-family: 'Domyouji Regular', 'Montserrat','Poppins', sans-serif;
+}
+
+.movieContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.movieContainer.current {
+    width: 400px;
+    height: 600px;
+    padding: 40px;
+    background-color: rgba(71, 35, 82, 0.1);
+    border-radius: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.movieContainer.side {
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+    opacity: 0.7;
+    filter: grayscale(30%);
+}
+
+.movieContainer.current img {
+    width: 350px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movieContainer.side img {
+    width: 180px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.movieContainer.current h1 {
+    font-size: 1.5rem;
+    margin: 10px 0 5px 0;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.movieContainer.current h2 {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+    color: var(--primary-color);
+}

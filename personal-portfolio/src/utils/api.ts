@@ -4,14 +4,24 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api
 // Types for portfolio items
 export interface PortfolioItem {
     id: number;
-    title: string;
-    description: string;
+    name: string;
     category: string;
+    subCategory: string;
+    description: string;
     image_url?: string;
-    link_url?: string;
-    technologies: string[];
+    link?: string;
+    skills: string[];
     created_at: string;
-    updated_at: string;
+}
+
+// Types for movie items
+export interface MovieItem {
+    name: string;
+    year: number;
+    director: string;
+    image_url: string;
+    ranking: number;
+    description: string;
 }
 
 export interface ApiResponse<T> {
@@ -20,6 +30,36 @@ export interface ApiResponse<T> {
     message?: string;
     error?: string;
     count?: number;
+}
+
+// Generic function to get data from the API
+export async function getData<T>(type: string): Promise<ApiResponse<T[]>> {
+    try {
+        const response = await fetch(`http://localhost:5000/api/portfolio/${type}`);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || `HTTP error! status: ${response.status}`);
+        }
+
+        return data;
+    } catch (error) {
+        console.error('API call failed:', error);
+        return {
+            status: 'ERROR',
+            error: error instanceof Error ? error.message : 'Unknown error occurred',
+        };
+    }
+}
+
+// Type-specific convenience functions
+export async function getPortfolioData(type: string): Promise<ApiResponse<PortfolioItem[]>> {
+    return getData<PortfolioItem>(type);
+}
+
+export async function getMovieData(type: string): Promise<ApiResponse<MovieItem[]>> {
+    return getData<MovieItem>(type);
 }
 
 // Generic API call function
@@ -53,39 +93,7 @@ async function apiCall<T>(
 }
 
 // Portfolio API functions
-export const portfolioApi = {
-    // Get all portfolio items
-    getAll: (): Promise<ApiResponse<PortfolioItem[]>> => 
-        apiCall<PortfolioItem[]>('/portfolio'),
 
-    // Get portfolio item by ID
-    getById: (id: number): Promise<ApiResponse<PortfolioItem>> => 
-        apiCall<PortfolioItem>(`/portfolio/${id}`),
-
-    // Create new portfolio item
-    create: (item: Omit<PortfolioItem, 'id' | 'created_at' | 'updated_at'>): Promise<ApiResponse<PortfolioItem>> => 
-        apiCall<PortfolioItem>('/portfolio', {
-            method: 'POST',
-            body: JSON.stringify(item),
-        }),
-
-    // Update portfolio item
-    update: (id: number, item: Partial<Omit<PortfolioItem, 'id' | 'created_at' | 'updated_at'>>): Promise<ApiResponse<PortfolioItem>> => 
-        apiCall<PortfolioItem>(`/portfolio/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify(item),
-        }),
-
-    // Delete portfolio item
-    delete: (id: number): Promise<ApiResponse<PortfolioItem>> => 
-        apiCall<PortfolioItem>(`/portfolio/${id}`, {
-            method: 'DELETE',
-        }),
-
-    // Get portfolio items by category
-    getByCategory: (category: string): Promise<ApiResponse<PortfolioItem[]>> => 
-        apiCall<PortfolioItem[]>(`/portfolio/category/${encodeURIComponent(category)}`),
-};
 
 // Health check function
 export const healthCheck = (): Promise<ApiResponse<{ timestamp: string }>> => 

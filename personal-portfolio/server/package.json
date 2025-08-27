@@ -4,23 +4,27 @@
   "description": "Backend server for personal portfolio with Supabase connection",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node --no-deprecation server.js",
+    "dev": "nodemon --no-deprecation server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "@supabase/supabase-js": "^2.38.4",
+    "@supabase/supabase-js": "^2.56.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "helmet": "^7.1.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
   },
-  "keywords": ["portfolio", "supabase", "express", "node"],
+  "keywords": [
+    "portfolio",
+    "supabase",
+    "express",
+    "node"
+  ],
   "author": "",
   "license": "ISC"
 }
-

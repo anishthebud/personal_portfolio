@@ -1,17 +1,18 @@
 const { createClient } = require('@supabase/supabase-js');
 
 // Create Supabase client
-const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
-);
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Test the connection
 const testConnection = async () => {
     try {
+        console.log("hello world");
         const { data, error } = await supabase
-            .from('portfolio_items')
-            .select('count')
+            .from('experience')
+            .select('*')
             .limit(1);
         
         if (error) {
@@ -19,6 +20,7 @@ const testConnection = async () => {
             return false;
         }
         
+        console.log(data);
         console.log('Connected to Supabase successfully');
         return true;
     } catch (error) {
@@ -27,6 +29,8 @@ const testConnection = async () => {
     }
 };
 
+testConnection();
+
 // Helper function to run queries (for backward compatibility)
 const query = async (text, params = []) => {
     // This is a simplified wrapper for basic queries
@@ -34,7 +38,7 @@ const query = async (text, params = []) => {
     try {
         if (text.includes('SELECT')) {
             const { data, error } = await supabase
-                .from('portfolio_items')
+                .from('education')
                 .select('*');
             
             if (error) throw error;
@@ -52,7 +56,7 @@ const query = async (text, params = []) => {
 };
 
 // Helper function to get a client (for backward compatibility)
-const getClient = () => supabase;
+const getClient = () => {supabase};
 
 module.exports = {
     query,

@@ -12,6 +12,7 @@ function App() {
           height="320px"
           image="./homeCardPics/aboutMe.png"
           description="Get to know my background, interests, and what drives me."
+          page_url="/aboutMe"
         />
         <HomeCard
           name="Favorite Films"
@@ -19,6 +20,7 @@ function App() {
           height="320px"
           image="./homeCardPics/favFilms-unsplash.jpg"
           description="Get to know my background, interests, and what drives me."
+          page_url="/favFilms"
         />
       </div>
       <div>
@@ -28,6 +30,7 @@ function App() {
           height="440px"
           image="./homeCardPics/experience-unsplash.jpg"
           description="Learn about my experience through projects and college."
+          page_url="/experience"
         />
         <HomeCard
           name="Resume and Cover Letter"
@@ -35,6 +38,7 @@ function App() {
           height="200px"
           image="./homeCardPics/resumeCV-unsplash.jpg"
           description="View my latest resume and tailored cover letters."
+          page_url="/resumeCV"
         />
       </div>
       <div>
@@ -44,6 +48,7 @@ function App() {
           height="320px"
           image="./homeCardPics/skills-unsplash.jpg"
           description="Get to know my background, interests, and what drives me."
+          page_url="/skills"
         />
         <HomeCard
           name="Current Tech"
@@ -51,6 +56,7 @@ function App() {
           height="320px"
           image="./homeCardPics/currentTech-unsplash.jpg"
           description="Get to know my background, interests, and what drives me."
+          page_url="/currentTech"
         />
       </div>
     </div>
