@@ -20,7 +20,7 @@ function FavFilms() {
     setLoading(true);
     const response = await getData<MovieItem>("favFilms");
     if (response.status === 'SUCCESS' && response.data) {
-      setItems(response.data);
+      setItems(response.data.sort((a, b) => b.ranking - a.ranking));
     }
     setLoading(false);
   };
@@ -63,7 +63,7 @@ function FavFilms() {
     <>
       <div className="filmDisplayContainer">
         {movieBefore && <MoviePanel movieItem={movieBefore} curr={false}/>}
-        <button id="goLeft" onClick={handleLeftClick} />
+        <button className="directionButton" id="goLeft" onClick={handleLeftClick}>&lt;</button>
         {currentMovie && (
           <MoviePanel 
             movieItem={currentMovie} 
@@ -71,7 +71,7 @@ function FavFilms() {
             onClick={handleMovieClick}
           />
         )}
-        <button id="goRight" onClick={handleRightClick} />
+        <button  className="directionButton" id="goRight" onClick={handleRightClick}>&gt;</button>
         {movieAfter && <MoviePanel movieItem={movieAfter} curr={false}/>}
       </div>
       

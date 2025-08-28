@@ -9,7 +9,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Test the connection
 const testConnection = async () => {
     try {
-        console.log("hello world");
         const { data, error } = await supabase
             .from('experience')
             .select('*')

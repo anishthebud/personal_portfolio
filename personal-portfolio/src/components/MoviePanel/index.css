@@ -1,9 +1,6 @@
-:root {
-    --primary-color: #5c106c;
-}
-
 body {
     font-family: 'Domyouji Regular', 'Montserrat','Poppins', sans-serif;
+    --primary-color: #5c106c;
 }
 
 .movieContainer {

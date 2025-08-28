@@ -58,17 +58,23 @@ type MassEffectProps = {
 // The type of data that is coming in, the color
 
 const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
-    const [selectedCategory, setSelectedCategory] = useState<string>('Education');
-    const [selectedItem, setProjectItem] = useState<PortfolioItem>();
+    const [categories, setCategories] = useState<string[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string>('');
+    const [selectedItem, setSelectedItem] = useState<PortfolioItem>();
 
     const [items, setItems] = useState<PortfolioItem[]>([]);
     const [loading, setLoading] = useState(false);
 
     const fetchItems = async () => {
         setLoading(true);
-        const response = await getData<PortfolioItem>(type);
+        const response = await getData<PortfolioItem>(type.replace(" ", "_").toLowerCase());
         if (response.status === 'SUCCESS' && response.data) {
             setItems(response.data);
+            const categorySet = new Set<string>();
+            response.data.forEach((item, index) => {
+                categorySet.add(item.category);
+            });
+            setCategories(Array.from(categorySet));
         }
         setLoading(false);
     };
@@ -76,7 +82,7 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
     useEffect(() => {
         // Calculate color variations using HSL
         const hoverColor = darkenHSL(color, 10); // Lighter
-        const selectionColor = darkenHSL(color, 30); // Darker
+        const selectionColor = darkenHSL(color, 20); // Darker
         const textColor = lightenHSL(color, 10); // Slightly lighter for text
         
         // Create more sophisticated variations
@@ -84,7 +90,8 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
         const selectionColorEnhanced = adjustSaturation(selectionColor, -20); // Decrease saturation for selection
         
         // Set all color variables
-        document.documentElement.style.setProperty('--primary-color', color);
+        console.log(color);
+        document.documentElement.style.setProperty('--mass-effect-color', color);
         document.documentElement.style.setProperty('--hover-color', hoverColorEnhanced);
         document.documentElement.style.setProperty('--selection-color', selectionColorEnhanced);
         document.documentElement.style.setProperty('--text-color', textColor);
@@ -94,52 +101,41 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
         fetchItems();
     }, []);
 
-    console.log(items);
 
-    function renderSelectionMenu() {
-        if (type === 'experience') {
-            const educationItems = items.filter((item) => item.category === 'Education');
-            const projectItems = items.filter((item) => item.category === 'Projects');
-            if (selectedCategory === 'Education') {
-                return (
-                    <div className="selectionMenu">
-                        {educationItems.map((item, index) => (
-                            <div className={`selectionItem ${selectedItem?.name === item.name ? 'selected': ''}`} onClick={() => setProjectItem(item)}>{item.name}</div>
-                        ))}
-                    </div>
-                );
-            } else if (selectedCategory === 'Projects') {
-                return (
-                    <div className="selectionMenu">
-                        {projectItems.map((item, index) => (
-                            <div className={`selectionItem ${selectedItem?.name === item.name ? 'selected': ''}`} onClick={() => setProjectItem(item)}>{item.name}</div>
-                        ))}
-                    </div>
-                );
-            }
-        }
+    const renderSelectionMenu = (category: string) => {
+        return (
+            <div className="selectionMenu">
+                {items.filter((item) => item.category === category).map((item, index) => (
+                    <div className={`selectionItem ${selectedItem?.name === item.name ? 'selected': ''}`} onClick={() => setSelectedItem(item)}>{item.name}</div>
+                ))}
+            </div>
+        )
+    }
+
+    const renderCategoryMenu = () => {
+        return categories.map((category, catIndex) => (
+            <div key={catIndex} className="categoryMenu">
+                <div 
+                    className={`categoryItem ${selectedCategory === category ? 'selected': ''}`} 
+                    onClick={() => {
+                        setSelectedCategory(category)
+                        setSelectedItem(undefined)
+                    }}
+                >
+                    {category}
+                </div>
+                {selectedCategory === category ? renderSelectionMenu(category) : null}
+            </div>
+        ));
     }
 
     return (
         <div className="outerPanel">
             <div className="left-panel">
-                <div className="categoryMenu">
-                    <div 
-                        id='left-item'
-                        className={`categoryItem ${selectedCategory === 'Education' ? 'selected' : ''}`} 
-                        onClick={() => setSelectedCategory('Education')}
-                    >
-                        Education
-                    </div>
-                    <div 
-                        id='right-item'
-                        className={`categoryItem ${selectedCategory === 'Projects' ? 'selected' : ''}`} 
-                        onClick={() => setSelectedCategory('Projects')}
-                    >
-                        Projects
-                    </div>
+                <div className="areaBar">
+                    {type}
                 </div>
-                {renderSelectionMenu()}
+                {renderCategoryMenu()}
             </div>
             <div className="right-panel">
             <div className="image-container">

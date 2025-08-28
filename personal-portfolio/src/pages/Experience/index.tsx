@@ -5,7 +5,7 @@ import MassEffectPanel from '../../components/MassEffectPanel';
 function Experience() {
   return (
     <div className="container" style={{backgroundImage: 'url(/backgroundImages/cyberpunk-hacker.gif)', backgroundSize: 'cover', backgroundBlendMode: 'lighten'}}>
-      <MassEffectPanel type='experience' color='hsla(89, 100%, 33%, 1.00)'/>
+      <MassEffectPanel type='Experience' color='hsla(89, 100%, 33%, 1.00)'/>
     </div>
   );
 }
