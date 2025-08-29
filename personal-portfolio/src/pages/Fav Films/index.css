@@ -1,6 +1,18 @@
-body {
-    background: linear-gradient(to bottom, #8a2be2, #9370db, #e6e6fa);
-    background-attachment: fixed;
+.filmContainer {
+    background: linear-gradient(to bottom, #8a2be2, #9370db, #b9b9cb);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.filmContainer h1 {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .filmDisplayContainer {
@@ -8,12 +20,150 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 8vw;
+    gap: clamp(20px, 4vw, 80px);
     width: 100%;
-    height: 100vh;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .directionButton {
     border-radius: 50%;
     font-size: large;
+    min-width: 50px;
+    height: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.directionButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+    .filmDisplayContainer {
+        gap: 6vw;
+    }
+    
+    .filmContainer h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+    .filmDisplayContainer {
+        gap: 6vw;
+    }
+    
+    .filmContainer h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+    .filmDisplayContainer {
+        gap: 4vw;
+    }
+    
+    .filmContainer h1 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+    
+    .directionButton {
+        min-width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .filmContainer {
+        padding: 15px;
+    }
+    
+    .filmDisplayContainer {
+        gap: 3vw;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .filmContainer h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .directionButton {
+        min-width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 480px) {
+    .filmContainer {
+        padding: 10px;
+    }
+    
+    .filmDisplayContainer {
+        gap: 15px;
+    }
+    
+    .filmContainer h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .directionButton {
+        min-width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 360px) {
+    .filmContainer {
+        padding: 8px;
+    }
+    
+    .filmDisplayContainer {
+        gap: 12px;
+    }
+    
+    .filmContainer h1 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    .directionButton {
+        min-width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Handle very small screens */
+@media (max-width: 320px) {
+    .filmDisplayContainer {
+        gap: 10px;
+    }
+    
+    .filmContainer h1 {
+        font-size: 1.1rem;
+    }
 }

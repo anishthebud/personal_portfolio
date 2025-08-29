@@ -60,7 +60,8 @@ function FavFilms() {
   }
 
   return (
-    <>
+    <div className="filmContainer">
+      <h1>Top 10 Favorite Films</h1>
       <div className="filmDisplayContainer">
         {movieBefore && <MoviePanel movieItem={movieBefore} curr={false}/>}
         <button className="directionButton" id="goLeft" onClick={handleLeftClick}>&lt;</button>
@@ -71,7 +72,7 @@ function FavFilms() {
             onClick={handleMovieClick}
           />
         )}
-        <button  className="directionButton" id="goRight" onClick={handleRightClick}>&gt;</button>
+        <button className="directionButton" id="goRight" onClick={handleRightClick}>&gt;</button>
         {movieAfter && <MoviePanel movieItem={movieAfter} curr={false}/>}
       </div>
       
@@ -80,7 +81,7 @@ function FavFilms() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
-    </>
+    </div>
   );
 }
 
