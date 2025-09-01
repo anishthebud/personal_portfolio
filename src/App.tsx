@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <HackingAnimation color="rgba(255, 255, 255, 0.5)" />
-      <div id="outerContainer" style={{ minHeight: '100vh', backgroundImage: 'url(/personalPortfolioBackground.png)', backgroundSize: 'cover' }}>
+      <div id="outerContainer">
         <div className="rows">
           <HomeCard
             name="About Me"
