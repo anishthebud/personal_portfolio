@@ -1,10 +1,11 @@
 .filmContainer {
-    background: linear-gradient(to bottom, #8a2be2, #9370db, #b9b9cb);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 10;
 }
 
 .filmContainer h1 {

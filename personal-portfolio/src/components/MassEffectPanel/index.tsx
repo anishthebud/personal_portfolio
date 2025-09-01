@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import { PortfolioItem, getData } from '../../utils/api';
+import HomeButton from '../HomeButton';
 
 // Helper function to parse HSL values
 const parseHSL = (hslString: string): { h: number, s: number, l: number, a?: number } | null => {
@@ -73,6 +74,7 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
             const categorySet = new Set<string>();
             response.data.forEach((item, index) => {
                 categorySet.add(item.category);
+                console.log(item.description);
             });
             setCategories(Array.from(categorySet));
         }
@@ -91,10 +93,10 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
         
         // Set all color variables
         console.log(color);
-        document.documentElement.style.setProperty('--mass-effect-color', color);
-        document.documentElement.style.setProperty('--hover-color', hoverColorEnhanced);
-        document.documentElement.style.setProperty('--selection-color', selectionColorEnhanced);
-        document.documentElement.style.setProperty('--text-color', textColor);
+        document.getElementById('outerPanel')?.style.setProperty('--mass-effect-color', color);
+        document.getElementById('outerPanel')?.style.setProperty('--hover-color', hoverColorEnhanced);
+        document.getElementById('outerPanel')?.style.setProperty('--selection-color', selectionColorEnhanced);
+        document.getElementById('outerPanel')?.style.setProperty('--text-color', textColor);
     }, [color]);
 
     useEffect(() => {
@@ -130,24 +132,27 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
     }
 
     return (
-        <div className="outerPanel">
-            <div className="left-panel">
-                <div className="areaBar">
-                    {type}
+        <>
+            <HomeButton color={color} />
+            <div id="outerPanel">
+                <div className="left-panel">
+                    <div className="areaBar">
+                        {type}
+                    </div>
+                    {renderCategoryMenu()}
                 </div>
-                {renderCategoryMenu()}
-            </div>
-            <div className="right-panel">
-            <div className="image-container">
-                <img src={selectedItem?.image_url || "./personalPortfolioLogo.png"} alt="" />
-            </div>
-            <div className="text-container">
-                <p>
-                    {selectedItem?.description}
-                </p>
+                <div className="right-panel">
+                <div className="image-container">
+                    <img src={selectedItem?.image_url || "./personalPortfolioLogo.png"} alt="" />
+                </div>
+                <div className="text-container">
+                    <p>
+                        {selectedItem?.description}
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+        </>
     );
 }
 

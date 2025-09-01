@@ -3,6 +3,8 @@ import MoviePanel from '../../components/MoviePanel';
 import MovieModal from '../../components/MovieModal';
 import './index.css';
 import { getData, MovieItem } from '../../utils/api';
+import HomeButton from '../../components/HomeButton';
+import HackingAnimation from '../../components/HackingAnimation';
 
 // Make a rotating display of my top 10 favorite movies, with a clickable display showing a poster of the movie with a description of that movie
 
@@ -20,7 +22,7 @@ function FavFilms() {
     setLoading(true);
     const response = await getData<MovieItem>("favFilms");
     if (response.status === 'SUCCESS' && response.data) {
-      setItems(response.data.sort((a, b) => b.ranking - a.ranking));
+      setItems(response.data);
     }
     setLoading(false);
   };
@@ -31,8 +33,8 @@ function FavFilms() {
 
   useEffect(() => {
     if (items.length > 0) {
-      setCurrentMovie(items[currentIndex]);
       setMovieBefore(items[(currentIndex - 1 + items.length) % items.length]);
+      setCurrentMovie(items[currentIndex]);
       setMovieAfter(items[(currentIndex + 1) % items.length]);
     }
   }, [items, currentIndex]);
@@ -60,11 +62,18 @@ function FavFilms() {
   }
 
   return (
-    <div className="filmContainer">
-      <h1>Top 10 Favorite Films</h1>
+    <>
+      <HackingAnimation color="#8a2be2" />
+      <HomeButton color="#8a2be2" />
+      <div className="filmContainer">
+      <h1>My Four Favorite Films</h1>
       <div className="filmDisplayContainer">
-        {movieBefore && <MoviePanel movieItem={movieBefore} curr={false}/>}
-        <button className="directionButton" id="goLeft" onClick={handleLeftClick}>&lt;</button>
+        {movieBefore && 
+          <>
+            <MoviePanel movieItem={movieBefore} curr={false}/>
+            <button className="directionButton" id="goLeft" onClick={handleLeftClick}>&lt;</button>
+          </>
+        }
         {currentMovie && (
           <MoviePanel 
             movieItem={currentMovie} 
@@ -72,8 +81,12 @@ function FavFilms() {
             onClick={handleMovieClick}
           />
         )}
-        <button className="directionButton" id="goRight" onClick={handleRightClick}>&gt;</button>
-        {movieAfter && <MoviePanel movieItem={movieAfter} curr={false}/>}
+        {movieAfter &&
+          <>
+            <button className="directionButton" id="goRight" onClick={handleRightClick}>&gt;</button>
+            {movieAfter && <MoviePanel movieItem={movieAfter} curr={false}/>}
+          </>
+        }
       </div>
       
       <MovieModal
@@ -81,7 +94,8 @@ function FavFilms() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
-    </div>
+      </div>
+    </>
   );
 }
 

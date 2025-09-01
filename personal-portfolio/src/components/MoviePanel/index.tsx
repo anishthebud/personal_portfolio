@@ -19,7 +19,7 @@ const MoviePanel: React.FC<MovieProps> = ({movieItem, curr, onClick}) => {
             <img src={movieItem?.image_url} alt={movieItem?.name} />
             {curr && (
                 <>
-                    <h1>{movieItem?.ranking}: {movieItem?.name}</h1>
+                    <h1>{movieItem?.name}</h1>
                     <h2>Released in {movieItem?.year}</h2>
                     <h2>Directed by {movieItem?.director}</h2>
                 </>

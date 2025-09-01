@@ -1,10 +1,15 @@
 import React from 'react';
 import './index.css';
 import ResumeViewer from '../../components/ResumeViewer';
+import HomeButton from '../../components/HomeButton';
+import HackingAnimation from '../../components/HackingAnimation';
 
 function ResumeCV() {
     return (
-        <div className="resume-cv-container">
+        <>
+            <HackingAnimation color="#cf7d24" />
+            <HomeButton color="#cf7d24" />
+            <div className="resume-cv-container">
             <div className="page-header">
                 <h1>Resume & Cover Letter</h1>
             </div>
@@ -24,6 +29,7 @@ function ResumeCV() {
                 />
             </div>            
         </div>
+        </>
     );
 }
 

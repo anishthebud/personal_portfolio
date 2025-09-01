@@ -6,13 +6,13 @@
     align-items: center;
     min-height: 100vh;
     padding: 0px 20px;
-    background: linear-gradient(90deg, rgb(227, 177, 78) 0%, rgb(209, 176, 148) 50%, rgb(227, 177, 78) 100%);
     color: white;
+    position: relative;
+    z-index: 10;
 }
 
 .page-header {
-    text-align: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    text-align: center; 
 }
 
 .page-header h1 {

@@ -1,12 +1,10 @@
-:root {
+#outerPanel {
     --mass-effect-color: hsla(89, 100%, 33%, 1.00);
     --hover-color: hsla(89, 100%, 53%, 1.00);
     --selection-color: hsla(89, 100%, 13%, 1.00);
     --text-color: hsla(89, 100%, 43%, 1.00);
     --background-color: rgba(0, 0, 0, 0.75);
-}
-
-.outerPanel {
+    
     display: flex;
     flex-direction: row;
     height: 85vh;
@@ -128,5 +126,6 @@
     height: 100%;
     font-family: 'Domyouji Regular', 'Montserrat', sans-serif;
     color: var(--mass-effect-color);
+    white-space: pre-line;
 }
 

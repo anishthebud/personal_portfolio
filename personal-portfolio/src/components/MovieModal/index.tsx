@@ -21,7 +21,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, isOpen, onClose }) => {
         <div className="modal-header">
           <img src={movie.image_url} alt={movie.name} className="modal-image" />
           <div className="modal-title">
-            <h1>{movie.ranking}: {movie.name}</h1>
+            <h1>{movie.name}</h1>
             <h2>Released in {movie.year}</h2>
             <h3>Directed by {movie.director}</h3>
           </div>
