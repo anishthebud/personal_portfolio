@@ -30,6 +30,7 @@ body {
     padding: 10px;
     opacity: 0.7;
     filter: grayscale(30%);
+    background: none;
 }
 
 .movieContainer.current img {
