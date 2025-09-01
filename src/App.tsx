@@ -30,7 +30,7 @@ function App() {
             width="400px"
             height="400px"
             image="./homeCardPics/skills-unsplash.jpg"
-            description="Get to know my background, interests, and what drives me."
+            description="Get to know what technical and soft skills I possess."
             page_url="/skills"
           />
         </div>
@@ -40,7 +40,7 @@ function App() {
             width="637px"
             height="200px"
             image="./homeCardPics/favFilms-unsplash.jpg"
-            description="Get to know my background, interests, and what drives me."
+            description="Get to know me through my four favorite films"
             page_url="/favFilms"
           />
           <HomeCard
