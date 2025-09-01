@@ -30,6 +30,9 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+  web:
+    build: .
+    image: personal-portfolio:latest
 
 networks:
   portfolio-network:
