@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './HomeCard.css';
 import { Navigate, useNavigate } from 'react-router-dom';
+import OptimizedImage from '../OptimizedImage';
 
 type HomeCardProps = {
   name: string;
@@ -14,6 +15,8 @@ type HomeCardProps = {
 const HomeCard: React.FC<HomeCardProps> = ({ name, width, height, image, description, page_url }) => {
   const widthValue = typeof width === 'number' ? `${width}px` : width;
   const heightValue = typeof height === 'number' ? `${height}px` : height;
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
 
@@ -21,9 +24,39 @@ const HomeCard: React.FC<HomeCardProps> = ({ name, width, height, image, descrip
     navigate(page_url);
   }
 
+  // Optimize hover handling with requestAnimationFrame
+  const handleMouseEnter = () => {
+    if (cardRef.current) {
+      requestAnimationFrame(() => {
+        setIsHovered(true);
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (cardRef.current) {
+      requestAnimationFrame(() => {
+        setIsHovered(false);
+      });
+    }
+  };
+
   return (
-    <div className="home-card" style={{ width: widthValue, height: heightValue }} onClick={goToPage}>
-      <img className="home-card__image" src={image} alt={name} />
+    <div 
+      ref={cardRef}
+      className={`home-card ${isHovered ? 'home-card--hovered' : ''}`} 
+      style={{ width: widthValue, height: heightValue }} 
+      onClick={goToPage}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <OptimizedImage 
+        src={image}
+        alt={name}
+        className="home-card__image"
+        loading="lazy"
+        placeholder="Loading..."
+      />
       <div className="home-card__content">
         <div className="home-card__name">{name}</div>
       </div>

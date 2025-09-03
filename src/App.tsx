@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import HomeCard from './components/HomeCard/HomeCard';
 import HackingAnimation from './components/HackingAnimation';
