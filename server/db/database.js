@@ -27,37 +27,10 @@ const testConnection = async () => {
     }
 };
 
-testConnection();
-
-// Helper function to run queries (for backward compatibility)
-const query = async (text, params = []) => {
-    // This is a simplified wrapper for basic queries
-    // For complex queries, use the Supabase client directly
-    try {
-        if (text.includes('SELECT')) {
-            const { data, error } = await supabase
-                .from('education')
-                .select('*');
-            
-            if (error) throw error;
-            
-            return {
-                rows: data || [],
-                rowCount: data ? data.length : 0
-            };
-        }
-        
-        throw new Error('Complex queries not supported in this wrapper. Use Supabase client directly.');
-    } catch (error) {
-        throw error;
-    }
-};
-
 // Helper function to get a client (for backward compatibility)
 const getClient = () => {supabase};
 
 module.exports = {
-    query,
     getClient,
     supabase,
     testConnection
