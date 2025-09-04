@@ -38,6 +38,13 @@
     flex-direction: row;
     gap: 30px;
     justify-content: center;
+    align-items: center;
+}
+
+.links {
+    text-align: center;
+    font-size: 2.0rem;
+    color: #cf7d24;
 }
 
 /* Responsive design */

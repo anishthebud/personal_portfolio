@@ -14,7 +14,7 @@ function App() {
             width="400px"
             height="400px"
             image="./homeCardPics/aboutMe.png"
-            description="Get to know my background, interests, and what drives me."
+            description="Get to know my background and interests."
             page_url="/aboutMe"
           />
           <HomeCard
@@ -40,15 +40,15 @@ function App() {
             width="637px"
             height="200px"
             image="./homeCardPics/favFilms-unsplash.jpg"
-            description="Get to know me through my four favorite films"
+            description="Get to know me through my four favorite films."
             page_url="/favFilms"
           />
           <HomeCard
-            name="Resume and Cover Letter"
+            name="Resume and Links"
             width="637px"
             height="200px"
             image="./homeCardPics/resumeCV-unsplash.jpg"
-            description="View my latest resume and tailored cover letters."
+            description="View my latest resume and links to professional profiles."
             page_url="/resumeCV"
           />
         </div>
