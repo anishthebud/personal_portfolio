@@ -11,7 +11,6 @@ import HackingAnimation from '../../components/HackingAnimation';
 
 function FavFilms() {
   const [items, setItems] = useState<MovieItem[]>([]);
-  const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentMovie, setCurrentMovie] = useState<MovieItem | null>(null);
   const [movieBefore, setMovieBefore] = useState<MovieItem | null>(null);
@@ -19,12 +18,10 @@ function FavFilms() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchItems = async () => {
-    setLoading(true);
     const response = await getData<MovieItem>("favFilms");
     if (response.status === 'SUCCESS' && response.data) {
       setItems(response.data);
     }
-    setLoading(false);
   };
 
   useEffect(() => {

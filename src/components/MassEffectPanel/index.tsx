@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './index.css';
 import { PortfolioItem, getData } from '../../utils/api';
 import HomeButton from '../HomeButton';
@@ -64,10 +63,8 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
     const [selectedItem, setSelectedItem] = useState<PortfolioItem>();
 
     const [items, setItems] = useState<PortfolioItem[]>([]);
-    const [loading, setLoading] = useState(false);
 
     const fetchItems = async () => {
-        setLoading(true);
         const response = await getData<PortfolioItem>(type.replace(" ", "_").toLowerCase());
         if (response.status === 'SUCCESS' && response.data) {
             setItems(response.data);
@@ -77,7 +74,6 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
             });
             setCategories(Array.from(categorySet));
         }
-        setLoading(false);
     };
 
     useEffect(() => {
@@ -99,7 +95,7 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
 
     useEffect(() => {
         fetchItems();
-    }, []);
+    });
 
 
     const renderSelectionMenu = (category: string) => {
