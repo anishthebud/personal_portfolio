@@ -6,7 +6,6 @@ const { supabase } = require('../db/database');
 router.get('/:type', async (req, res) => {
     try {
         const { type } = req.params;
-        console.log(type);
         const { data, error } = await supabase
             .from(type)
             .select('*');

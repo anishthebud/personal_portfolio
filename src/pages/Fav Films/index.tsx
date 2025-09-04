@@ -39,10 +39,6 @@ function FavFilms() {
     }
   }, [items, currentIndex]);
 
-  console.log('Items:', items);
-  console.log('Current Movie:', currentMovie);
-  console.log('Current Index:', currentIndex);
-
   const handleMovieClick = () => {
     if (currentMovie) {
       setIsModalOpen(true);

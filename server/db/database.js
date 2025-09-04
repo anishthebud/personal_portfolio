@@ -18,8 +18,7 @@ const testConnection = async () => {
             console.error('Supabase connection error:', error);
             return false;
         }
-        
-        console.log(data);
+    
         console.log('Connected to Supabase successfully');
         return true;
     } catch (error) {

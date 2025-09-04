@@ -74,7 +74,6 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
             const categorySet = new Set<string>();
             response.data.forEach((item, index) => {
                 categorySet.add(item.category);
-                console.log(item.description);
             });
             setCategories(Array.from(categorySet));
         }
@@ -92,7 +91,6 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
         const selectionColorEnhanced = adjustSaturation(selectionColor, -20); // Decrease saturation for selection
         
         // Set all color variables
-        console.log(color);
         document.getElementById('outerPanel')?.style.setProperty('--mass-effect-color', color);
         document.getElementById('outerPanel')?.style.setProperty('--hover-color', hoverColorEnhanced);
         document.getElementById('outerPanel')?.style.setProperty('--selection-color', selectionColorEnhanced);
