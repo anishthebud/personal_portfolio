@@ -7,7 +7,7 @@ function Experience() {
   return (
     <>
       <HackingAnimation color='hsla(89, 100%, 33%, 1.00)'/>
-      <div className="container" style={{backgroundImage: 'url(/backgroundImages/cyberpunk-hacker.gif)', backgroundSize: 'cover', backgroundBlendMode: 'lighten'}}>
+      <div className="container">
         <MassEffectPanel type='Experience' color='hsla(89, 100%, 33%, 1.00)'/>
       </div>
     </>

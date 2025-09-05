@@ -137,7 +137,14 @@ const MassEffectPanel: React.FC<MassEffectProps> = ({type, color}) => {
                 </div>
                 <div className="right-panel">
                 <div className="image-container">
-                    <img src={selectedItem?.image_url || "./personalPortfolioLogo.png"} alt="" />
+                    {selectedItem?.link && (
+                        <a href={selectedItem.link}>
+                            <img src={selectedItem?.image_url || "./personalPortfolioLogo.png"} alt="" />
+                        </a>
+                    )}
+                    {!selectedItem?.link && (
+                        <img src={selectedItem?.image_url || "./personalPortfolioLogo.png"} alt="" />    
+                    )}
                 </div>
                 <div className="text-container">
                     <p>

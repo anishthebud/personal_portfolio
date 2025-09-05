@@ -6,7 +6,7 @@ function Skills() {
   return (
     <>
       <HackingAnimation color='hsla(235, 100%, 33%, 1.00)'/>
-      <div className="container" style={{backgroundImage: 'url(/backgroundImages/cyberpunk-hacker.gif)', backgroundSize: 'cover', backgroundBlendMode: 'lighten'}}>
+      <div className="container" >
         <MassEffectPanel type='Skills' color='hsla(235, 100%, 33%, 1.00)'/>
       </div>
     </>
