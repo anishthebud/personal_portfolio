@@ -21,7 +21,6 @@ body {
     background-color: rgba(71, 35, 82, 0.1);
     border-radius: 15px;
     border: 2px solid var(--primary-color);
-    box-shadow: 0 20px 20px rgba(255, 255, 255, 0.826);
 }
 
 .movieContainer.side {
